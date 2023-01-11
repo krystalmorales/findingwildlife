@@ -1,0 +1,53 @@
+@url = http://localhost:8080/finding-wildlife/park-organism
+@JWT_TOKEN = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmaW5kaW5nLXdpbGRsaWZlIiwic3ViIjoiam9obnNtaXRoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImFwcFVzZXJJZCI6MSwiZXhwIjoxNjY0NTcwNjY3fQ.FmfmmnXm2PNQfHAOTDCfjJsyNv-d8EnEV20QV1j7nrA
+
+###
+
+POST http://localhost:8080/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "johnsmith@gmail.com",
+    "password": "P@ssw0rd!"
+}
+
+###
+
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN}}
+
+{
+    "abundance": "occasional",
+    "nativeness": "NATIVE",
+    "parkId": 1,
+    "organism": {
+        "organismId": 1,
+        "commonName": "American Black Bear",
+        "scientificName": "Ursus americanus",
+        "category": "mammal"
+    }
+}
+
+###
+
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN}}
+
+{
+    "parkOrganismId": 1,
+    "abundance": "rare",
+    "nativeness": "NATIVE",
+    "parkId": 1,
+    "organism": {
+        "organismId": 1,
+        "commonName": "American Black Bear",
+        "scientificName": "Ursus americanus",
+        "category": "mammal"
+    }
+}
+
+###
+
+GET {{url}}/1 HTTP/1.1

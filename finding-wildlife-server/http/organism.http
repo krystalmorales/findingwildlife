@@ -1,0 +1,56 @@
+@url = http://localhost:8080/finding-wildlife/organism
+@JWT_TOKEN = eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmaW5kaW5nLXdpbGRsaWZlIiwic3ViIjoiam9obnNtaXRoQGdtYWlsLmNvbSIsImF1dGhvcml0aWVzIjoiUk9MRV9BRE1JTiIsImFwcFVzZXJJZCI6MSwiZXhwIjoxNjY0NTY4MTIyfQ.bsOAC2sNcBkwH044_VLdF-jJDXKgjwzkv2sVcxuJJmo
+
+POST http://localhost:8080/create_account HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "menonshreya",
+    "password": "P@ssw0rd!"
+}
+
+###
+
+POST http://localhost:8080/authenticate HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "johnsmith@gmail.com",
+    "password": "P@ssw0rd!"
+}
+
+###
+
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN}}
+
+{
+    "scientificName": "felis catus",
+    "commonName": "cat",
+    "category": "mammal",
+    "parks": []
+}
+
+###
+
+GET {{url}}/felis catus HTTP/1.1
+
+###
+
+PUT {{url}}/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{JWT_TOKEN}}
+
+{
+    "organismId": 1,
+    "scientificName": "felis catus",
+    "commonName": "cat",
+    "category": "testing",
+    "parks": []
+}
+
+###
+
+DELETE {{url}}/1 HTTP/1.1
+Authorization: Bearer {{JWT_TOKEN}}
